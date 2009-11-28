@@ -29,5 +29,5 @@ if (count($data) == 0) {
 $data = Jojo::selectQuery("SELECT * FROM {page} WHERE pg_link = 'JOJO_Plugin_Jojo_gmaps_kml'");
 if (count($data) == 0) {
     echo "Adding <b>Maps GeoRSS</b> Page<br />";
-    Jojo::insertQuery("INSERT INTO {page} SET pg_title = 'Maps KML', pg_link = 'JOJO_Plugin_Jojo_gmaps_kml', pg_url = 'maps/kml', pg_parent = ?", array($_NOT_ON_MENU_ID));
+    Jojo::insertQuery("INSERT INTO {page} SET pg_title = 'Maps KML', pg_link = 'JOJO_Plugin_Jojo_gmaps_kml', pg_url = 'maps/kml', pg_parent = ?, pg_sitemapnav='no', pg_xmlsitemapnav='no'", array($_NOT_ON_MENU_ID));
 }
