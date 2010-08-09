@@ -19,12 +19,11 @@ class JOJO_Plugin_jojo_gmaps_kml extends JOJO_Plugin
         $content = array();
 
         /* Find the map in the database */
-        $res = Jojo::selectQuery('SELECT * FROM {map} WHERE mp_publish = "yes" AND LOWER(mp_name) = ?', Util::getFormData('mapname'));
-        if (!isset($res[0])) {
+        $map = Jojo::selectRow('SELECT * FROM {map} WHERE mp_publish = "yes" AND LOWER(mp_name) = ?', urldecode(Util::getFormData('mapname')));
+        if (!$map) {
             $content['content'] = "Map not found or not published.";
             return $content;
         }
-        $map = $res[0];
 
         /* Get points on the map */
         $mapLocations = Jojo::selectQuery('SELECT * FROM {maplocation} WHERE mapid = ?', $map['mapid']);
@@ -79,7 +78,7 @@ class JOJO_Plugin_jojo_gmaps_kml extends JOJO_Plugin
     public function getCorrectUrl()
     {
         /* Act like a file, not a folder */
-        $url = parent::getCorrectUrl() . urlencode(Util::getFormData('mapname')) . '.kml';
+        $url = parent::getCorrectUrl() . urlencode(urldecode(Util::getFormData('mapname'))) . '.kml';
         return $url;
     }
 
