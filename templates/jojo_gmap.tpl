@@ -9,7 +9,9 @@
         var map{$mapid} = new google.maps.Map2(document.getElementById("map{$mapid}"));
         /* Set center to New Zealand if no locations are provided */
         map{$mapid}.setCenter(new google.maps.LatLng(-40.900557,174.885971), 5);
+        {if $map.mp_control}
         map{$mapid}.addControl(new google.maps.{$map.mp_control}MapControl());
+        {/if}
 
         {if $map.mp_typecontrol=='yes'}
             map{$mapid}.addControl(new google.maps.HierarchicalMapTypeControl());
