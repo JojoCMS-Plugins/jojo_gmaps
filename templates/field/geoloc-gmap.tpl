@@ -1,11 +1,11 @@
 <script type="text/javascript" src="http://www.google.com/jsapi?key={$OPTIONS.gmapskey}"></script>
 <script type="text/javascript">google.load("maps", "2",{ldelim}"other_params":"sensor=false"{rdelim});</script>
 
-Lat: <span id="{$fieldname}_latTXT">{$fieldvalue.0}</span>
-Long: <span id="{$fieldname}_longTXT">{$fieldvalue.1}</span>
+Lat: <span id="{$fieldname}_latTXT">{if $fieldvalue.0}{$fieldvalue.0}{/if}</span>
+Long: <span id="{$fieldname}_longTXT">{if $fieldvalue.1}{$fieldvalue.1}{/if}</span>
 <a href="#" onclick="showGmap('{$fieldname}', '{$option}'); return false;">Change / Set Location</a>
-<input type="hidden" name="{$fieldname}[lat]" id="{$fieldname}_lat" value="{$fieldvalue.0}" />
-<input type="hidden" name="{$fieldname}[long]" id="{$fieldname}_long" value="{$fieldvalue.1}" />
+<input type="hidden" name="{$fieldname}[lat]" id="{$fieldname}_lat" value="{if $fieldvalue.0}{$fieldvalue.0}{/if}" />
+<input type="hidden" name="{$fieldname}[long]" id="{$fieldname}_long" value="{if $fieldvalue.1}{$fieldvalue.1}{/if}" />
 <br/>
 
 <div id="map-wrapper" class="jpop">
