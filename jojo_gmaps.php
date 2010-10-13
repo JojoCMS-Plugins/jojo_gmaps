@@ -32,7 +32,8 @@ class JOJO_Plugin_jojo_gmaps extends JOJO_Plugin
                 }
                 $map = $res[0];
 
-                $maplocations = Jojo::selectQuery('SELECT * FROM {maplocation} WHERE mapid = ?', $res[0]['mapid']);
+                $maplocations = Jojo::selectQuery('SELECT * FROM {maplocation} WHERE mapid = ? ORDER BY ml_name', $res[0]['mapid']);
+                usort($maplocations, array('JOJO_Plugin_jojo_gmaps', 'ordersort'));
 
 
                 /* Create url to KML file */
@@ -50,4 +51,12 @@ class JOJO_Plugin_jojo_gmaps extends JOJO_Plugin
         }
         return $content;
     }
+
+    private static function ordersort($a, $b)
+    {
+         if (isset($a['displayorder'])) {
+            return strnatcasecmp($a['displayorder'],$b['displayorder']);
+         }
+    }
+
 }

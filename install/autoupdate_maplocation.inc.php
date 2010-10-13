@@ -22,7 +22,7 @@
 $table = 'maplocation';
 $default_td[$table]['td_displayname'] = 'Map Location';
 $default_td[$table]['td_displayfield'] = 'ml_name';
-$default_td[$table]['td_orderbyfields'] = 'ml_name';
+$default_td[$table]['td_orderbyfields'] = 'displayorder, ml_name';
 $default_td[$table]['td_categorytable'] = 'map';
 $default_td[$table]['td_categoryfield'] = 'mapid';
 $default_td[$table]['td_primarykey'] = 'locationid';
@@ -77,5 +77,15 @@ $default_fd[$table][$field]['fd_size'] = '';
 $default_fd[$table][$field]['fd_name'] = 'Description';
 $default_fd[$table][$field]['fd_required'] = 'no';
 $default_fd[$table][$field]['fd_help'] = 'Description or Address of this location';
+$default_fd[$table][$field]['fd_mode'] = 'basic';
+$default_fd[$table][$field]['fd_tabname'] = 'Location';
+
+$field = 'displayorder';
+$default_fd[$table][$field]['fd_order'] = $o++;
+$default_fd[$table][$field]['fd_type'] = 'integer';
+$default_fd[$table][$field]['fd_size'] = '';
+$default_fd[$table][$field]['fd_name'] = 'Display Order';
+$default_fd[$table][$field]['fd_required'] = 'no';
+$default_fd[$table][$field]['fd_help'] = '';
 $default_fd[$table][$field]['fd_mode'] = 'basic';
 $default_fd[$table][$field]['fd_tabname'] = 'Location';

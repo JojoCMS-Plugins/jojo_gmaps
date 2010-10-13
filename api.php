@@ -40,6 +40,17 @@ $_options[] = array(
 );
 
 $_options[] = array(
+    'id'          => 'gmaps_locations',
+    'category'    => 'Maps',
+    'label'       => 'Show locations',
+    'description' => 'Show a list of location details with panTo links if more than one',
+    'type'        => 'radio',
+    'default'     => 'no',
+    'options'     => 'yes,no',
+    'plugin'      => 'jojo_gmaps'
+);
+
+$_options[] = array(
     'id'          => 'gmaps_filter',
     'category'    => 'Maps',
     'label'       => 'Filter for maps in',

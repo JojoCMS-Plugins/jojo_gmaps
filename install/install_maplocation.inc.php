@@ -8,6 +8,7 @@ CREATE TABLE {maplocation} (
       `ml_geoloc` text,
       `ml_name` varchar(255) NOT NULL,
       `ml_description` text NOT NULL,
+      `displayorder` int(4) NOT NULL default '0',
       PRIMARY KEY  (`locationid`),
       KEY `mapid` (`mapid`)
     ) TYPE=MyISAM;";
