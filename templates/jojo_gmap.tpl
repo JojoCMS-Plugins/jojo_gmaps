@@ -41,8 +41,8 @@ function initialize() {ldelim}
      
     bounds.extend(new google.maps.LatLng({$m.ml_geoloc}));
     infowindow["{$mapid}-{$m.locationid}"] = new google.maps.InfoWindow({ldelim}
-            content: '<p class="mapinfo"><strong>{$m.ml_name|replace:"'":"\'"}</strong><br />'+
-            '{$m.ml_description|nl2br|replace:"\n":""|replace:"\r":''}</p>'
+            content: '<p class="mapinfo"><strong>{$m.name|replace:"'":"\'"}</strong><br />'+
+            '{$m.description|replace:"\n":""|replace:"\r":''}</p>'
     {rdelim});
 
     google.maps.event.addListener(marker["{$mapid}-{$m.locationid}"], 'click', function() {ldelim}
