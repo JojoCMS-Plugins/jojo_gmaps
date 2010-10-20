@@ -24,6 +24,7 @@ class JOJO_Plugin_jojo_gmaps_kml extends JOJO_Plugin
             $content['content'] = "Map not found or not published.";
             return $content;
         }
+         $map['name'] = htmlspecialchars($map['mp_name'], ENT_COMPAT, 'UTF-8', false);
 
         /* Get points on the map */
         $mapLocations = Jojo::selectQuery('SELECT * FROM {maplocation} WHERE mapid = ?', $map['mapid']);
@@ -32,6 +33,7 @@ class JOJO_Plugin_jojo_gmaps_kml extends JOJO_Plugin
             $mapLocations[$k]['lat'] = $parts[0];
             $mapLocations[$k]['long'] = $parts[1];
             $mapLocations[$k]['description'] = $this->_rssEscape(nl2br($v['ml_description']));
+            $mapLocations[$k]['name'] = htmlspecialchars($v['ml_name'], ENT_COMPAT, 'UTF-8', false);
         }
         $smarty->assign('map', $map);
         $smarty->assign('mapid', $map['mapid']);
