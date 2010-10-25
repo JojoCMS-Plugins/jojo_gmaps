@@ -17,10 +17,11 @@ function initialize() {ldelim}
         {elseif  $map.mp_type=='Hybrid'}mapTypeId: google.maps.MapTypeId.HYBRID,
         {elseif  $map.mp_type=='Terrain'}mapTypeId: google.maps.MapTypeId.TERRAIN,
         {else}mapTypeId: google.maps.MapTypeId.ROADMAP,{/if}
-        navigationControl: {if $map.mp_control}true{else}false{/if},
-        {if $map.mp_control}navigationControlOptions: {ldelim}
+        navigationControl: {if $map.mp_control && $map.mp_control!='None'}true{else}false{/if},
+        {if $map.mp_control && $map.mp_control!='None'}navigationControlOptions: {ldelim}
             style: google.maps.NavigationControlStyle.{if $map.mp_control=='Small'}SMALL{else}DEFAULT{/if}
-        {rdelim}{/if},
+        {rdelim},{/if}
+        streetViewControl: {if $map.mp_streetview}true{else}false{/if},
         mapTypeControl: {if $map.mp_typecontrol=='yes'}true{else}false{/if},
         mapTypeControlOptions: {ldelim}
             style: google.maps.MapTypeControlStyle.DROPDOWN_MENU

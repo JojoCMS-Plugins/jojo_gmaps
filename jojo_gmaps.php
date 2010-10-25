@@ -25,23 +25,19 @@ class JOJO_Plugin_jojo_gmaps extends JOJO_Plugin
             foreach($matches[1] as $id => $match) {
 
                 /* Find the map in the database */
-                $res = Jojo::selectQuery('SELECT * FROM {map} WHERE mp_name = ? or mapid = ?', array(trim($match),trim($match)));
-                if (!isset($res[0])) {
+                $map = Jojo::selectRow('SELECT * FROM {map} WHERE mp_name = ? or mapid = ?', array(trim($match),trim($match)));
+                if (!$map) {
                     $content = str_replace($matches[0][$id], "Map '$match' not found", $content);
                     continue;
                 }
-                $map = $res[0];
-                foreach ($map as &$m) {
-                    $m['name'] = htmlspecialchars($m['mp_name'], ENT_COMPAT, 'UTF-8', false);
-                }
+                $map['name'] = htmlspecialchars($map['mp_name'], ENT_COMPAT, 'UTF-8', false);
 
-                $maplocations = Jojo::selectQuery('SELECT * FROM {maplocation} WHERE mapid = ? ORDER BY ml_name', $res[0]['mapid']);
+                $maplocations = Jojo::selectQuery('SELECT * FROM {maplocation} WHERE mapid = ? ORDER BY ml_name', $map['mapid']);
                 usort($maplocations, array('JOJO_Plugin_jojo_gmaps', 'ordersort'));
                 foreach ($maplocations as &$ml) {
                     $ml['name'] = htmlspecialchars($ml['ml_name'], ENT_COMPAT, 'UTF-8', false);
                     $ml['description'] = nl2br(htmlspecialchars($ml['ml_description'], ENT_COMPAT, 'UTF-8', false));
                 }
-
 
                 /* Create url to KML file */
                 $url = _SITEURL . '/'. JOJO_Plugin_jojo_gmaps_kml::_getPrefix() . '/' . urlencode(strtolower($map['mp_name'])) . '.kml';

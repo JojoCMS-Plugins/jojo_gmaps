@@ -79,6 +79,16 @@ $default_fd[$table][$field]['fd_help'] = 'Use a Small or a Large map navigation 
 $default_fd[$table][$field]['fd_mode'] = 'basic';
 $default_fd[$table][$field]['fd_tabname'] = 'Map';
 
+$field = 'mp_streetview';
+$default_fd[$table][$field]['fd_order'] = $o++;
+$default_fd[$table][$field]['fd_type'] = 'yesno';
+$default_fd[$table][$field]['fd_default'] = '1';
+$default_fd[$table][$field]['fd_name'] = 'StreetView Control';
+$default_fd[$table][$field]['fd_required'] = 'yes';
+$default_fd[$table][$field]['fd_help'] = 'Add a StreetView control';
+$default_fd[$table][$field]['fd_mode'] = 'basic';
+$default_fd[$table][$field]['fd_tabname'] = 'Map';
+
 $field = 'mp_zoom';
 $default_fd[$table][$field]['fd_order'] = $o++;
 $default_fd[$table][$field]['fd_type'] = 'radio';
