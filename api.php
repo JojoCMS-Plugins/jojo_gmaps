@@ -18,8 +18,7 @@ $_provides['pluginClasses'] = array(
 
 /* Register URI patterns */
 $prefix = JOJO_Plugin_Jojo_gmaps_kml::_getPrefix();
-Jojo::registerURI("$prefix/[mapname:[^\\.]+].kml", 'JOJO_Plugin_Jojo_gmaps_kml'); // "maps/kml/mapname.kml"
-
+Jojo::registerURI("$prefix/[mapname:[^\\.]+].kml", 'jojo_plugin_jojo_gmaps_kml'); // "maps/kml/mapname.kml"
 
 /* XML Sitemap */
 Jojo::addFilter('jojo_xml_sitemap', 'xmlsitemap', 'jojo_gmaps_kml');
