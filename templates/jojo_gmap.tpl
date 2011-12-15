@@ -37,7 +37,7 @@ function initialize() {ldelim}
     marker["{$mapid}-{$m.locationid}"] = new google.maps.Marker({ldelim}
         position: pos{$m.locationid},
         map: map{$mapid},
-        title: "{$m.ml_name}",
+        title: "{$m.ml_name}"
     {rdelim});
      
     bounds.extend(new google.maps.LatLng({$m.ml_geoloc}));
