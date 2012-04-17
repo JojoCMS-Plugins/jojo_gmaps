@@ -39,7 +39,7 @@ function initialize() {ldelim}
         map: map{$mapid},
         title: "{$m.ml_name}"
     {rdelim});
-     
+
     bounds.extend(new google.maps.LatLng({$m.ml_geoloc}));
     infowindow["{$mapid}-{$m.locationid}"] = new google.maps.InfoWindow({ldelim}
             content: '<p class="mapinfo"><strong>{$m.name|replace:"'":"\'"}</strong><br />'+
@@ -61,42 +61,17 @@ function initialize() {ldelim}
 {/if}
 {rdelim}
 
-{literal}
-function downloadUrl(url,callback) {
- var request = window.ActiveXObject ? 
- new ActiveXObject('Microsoft.XMLHTTP') : 
- new XMLHttpRequest;
-
- request.onreadystatechange = function() {
-   if (request.readyState == 4) {
-     request.onreadystatechange = doNothing;
-     callback(request, request.status);
-   }
- };
- request.open('GET', url, true);
- request.send(null);
-}
-
-function doNothing() {}
-$(document).ready(function() {
+{literal}$(document).ready(function() {
     loadGMapScript();
 });
-
-function findonmap(map, markerid) {
-     map.panTo(marker[markerid].getPosition());
-    if (map.getZoom() < 14) {
-        map.setZoom(16);
-    }
-    setTimeout(function() {google.maps.event.trigger(marker[markerid], 'click');}, 800);
-}
 
 function loadGMapScript() {
     var script = document.createElement("script");
     script.type = "text/javascript";
     script.src = "http://maps.google.com/maps/api/js?sensor=false&callback=initialize";
     document.body.appendChild(script);
-}
-{/literal}/* ]]> */
+}{/literal}
+/* ]]> */
 </script>
 {if $mapLocations}
     <div class='jojo_maplocations' id="maplocations{$mapid}"{if $OPTIONS.gmaps_locations != 'yes'} style="display:none"{/if} >
