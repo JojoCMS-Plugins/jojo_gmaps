@@ -1,4 +1,4 @@
-<div class='jojo_map' id="map{$mapid}" style="width: {$map.mp_width}px; height: {$map.mp_height}px;"></div>
+<div class='jojo_map' id="map{$mapid}" style="width: {$map.mp_width}{$map.mapunit_w}; height: {$map.mp_height}{$map.mapunit_h};"></div>
 <script type="text/javascript">
 /* <![CDATA[ */
 var marker = {ldelim}{rdelim};

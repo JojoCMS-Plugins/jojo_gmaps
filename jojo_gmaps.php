@@ -43,6 +43,8 @@ class JOJO_Plugin_jojo_gmaps extends JOJO_Plugin
                 $url = _SITEURL . '/'. JOJO_Plugin_jojo_gmaps_kml::_getPrefix() . '/' . urlencode(strtolower($map['mp_name'])) . '.kml';
 
                 $smarty->assign('kmlurl', $url);
+                $map['mapunit_w'] = is_numeric($map['mp_width']) ? 'px' : '';
+                $map['mapunit_h'] = is_numeric($map['mp_height']) ? 'px' : '';
                 $smarty->assign('map', $map);
                 $smarty->assign('mapLocations', $maplocations);
                 $smarty->assign('mapid', $map['mapid']);

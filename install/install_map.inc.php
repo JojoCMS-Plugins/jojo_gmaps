@@ -5,8 +5,8 @@ $query = "
 CREATE TABLE {map} (
       `mapid` int(11) NOT NULL auto_increment,
       `mp_name` varchar(255) NOT NULL,
-      `mp_width` int(11) NOT NULL,
-      `mp_height` int(11) NOT NULL,
+      `mp_width` varchar(11) NOT NULL,
+      `mp_height` varchar(11) NOT NULL,
       `mp_publish` enum('yes','no') NOT NULL,
       `mp_control` enum('Small','Large','None') NOT NULL,
       `mp_streetview` tinyint(1) default '1',

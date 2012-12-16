@@ -49,23 +49,25 @@ $default_fd[$table][$field]['fd_tabname'] = 'Map';
 
 $field = 'mp_width';
 $default_fd[$table][$field]['fd_order'] = $o++;
-$default_fd[$table][$field]['fd_type'] = 'integer';
+$default_fd[$table][$field]['fd_type'] = 'text';
 $default_fd[$table][$field]['fd_default'] = 500;
-$default_fd[$table][$field]['fd_units'] = 'pixels';
+$default_fd[$table][$field]['fd_size'] = 5;
+$default_fd[$table][$field]['fd_units'] = '';
 $default_fd[$table][$field]['fd_name'] = 'Map Width';
 $default_fd[$table][$field]['fd_required'] = 'yes';
-$default_fd[$table][$field]['fd_help'] = 'The width of this map';
+$default_fd[$table][$field]['fd_help'] = 'The width of this map (defaults to pixels if no unit entered)';
 $default_fd[$table][$field]['fd_mode'] = 'basic';
 $default_fd[$table][$field]['fd_tabname'] = 'Map';
 
 $field = 'mp_height';
 $default_fd[$table][$field]['fd_order'] = $o++;
 $default_fd[$table][$field]['fd_type'] = 'integer';
-$default_fd[$table][$field]['fd_default'] = 500;
-$default_fd[$table][$field]['fd_units'] = 'pixels';
+$default_fd[$table][$field]['fd_type'] = 'text';
+$default_fd[$table][$field]['fd_size'] = 5;
+$default_fd[$table][$field]['fd_units'] = '';
 $default_fd[$table][$field]['fd_name'] = 'Map Height';
 $default_fd[$table][$field]['fd_required'] = 'yes';
-$default_fd[$table][$field]['fd_help'] = 'The height of this map';
+$default_fd[$table][$field]['fd_help'] = 'The height of this map (defaults to pixels if no unit entered)';
 $default_fd[$table][$field]['fd_mode'] = 'basic';
 $default_fd[$table][$field]['fd_tabname'] = 'Map';
 
