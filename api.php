@@ -31,11 +31,22 @@ $_provides['fieldTypes'] = array(
 $_options[] = array(
     'id' => 'gmapskey',
     'category' => 'Maps',
-    'label' => 'Google Maps API key',
-    'description' => 'Google Maps API key received after applying here: http://www.google.com/apis/maps/signup.html',
+    'label' => 'Google Maps 3 API key',
+    'description' => 'Google API key - details here https://developers.google.com/maps/documentation/javascript/tutorial#api_key',
     'type' => 'text',
     'default' => '',
     'options' => ''
+);
+
+$_options[] = array(
+    'id'          => 'gmaps_location_sensor',
+    'category'    => 'Maps',
+    'label'       => 'Sense location',
+    'description' => 'Enable the location sensor to show the users location (if permitted) relative to the map location(s)',
+    'type'        => 'radio',
+    'default'     => 'no',
+    'options'     => 'yes,no',
+    'plugin'      => 'jojo_gmaps'
 );
 
 $_options[] = array(
@@ -60,6 +71,40 @@ $_options[] = array(
     'plugin'      => 'jojo_gmaps'
 );
 
+$_options[] = array(
+    'id'          => 'gmaps_icon',
+    'category'    => 'Maps',
+    'label'       => 'Custom Marker Icon',
+    'description' => 'relative url for a custom map marker png',
+    'type'        => 'text',
+    'default'     => '',
+    'options'     => '',
+    'plugin'      => 'jojo_gmaps'
+);
+
+$_options[] = array(
+    'id'          => 'gmaps_icon_offset',
+    'category'    => 'Maps',
+    'label'       => 'Custom Icon Offset',
+    'description' => 'Offset from top left to pointer tip (if not center bottom). eg 10,30',
+    'type'        => 'text',
+    'default'     => '',
+    'options'     => '',
+    'plugin'      => 'jojo_gmaps'
+);
+
+$_options[] = array(
+    'id'          => 'gmaps_styling',
+    'category'    => 'Maps',
+    'label'       => 'Map styling',
+    'description' => 'Paste in styling overrides here as a comma separated array eg
+    {featureType:"all",stylers: [{hue:"#c1b8cd" },{ saturation: -60 }]},
+{featureType:"road.highway",stylers: [{hue:"#9c7dc3" }]}',
+    'type'        => 'textarea',
+    'default'     => '',
+    'options'     => '',
+    'plugin'      => 'jojo_gmaps'
+);
 
 $gmaps_filter = Jojo::getOption('gmaps_filter');
 /* Map filter */

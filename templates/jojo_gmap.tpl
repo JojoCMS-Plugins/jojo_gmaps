@@ -31,11 +31,17 @@ function initialize() {ldelim}
 
     map{$mapid} = new google.maps.Map(document.getElementById("map{$mapid}"), map{$mapid}Options);
     var bounds = new google.maps.LatLngBounds();
+    {if $OPTIONS.gmaps_styling}var mapstyles = [ {$OPTIONS.gmaps_styling} ];
+    map{$mapid}.setOptions({ldelim}styles: mapstyles{rdelim});
+    {/if}
+
 {if $mapLocations}
     {foreach from=$mapLocations key=k item=m}
     var pos{$m.locationid} = new google.maps.LatLng({$m.ml_geoloc});
     marker["{$mapid}-{$m.locationid}"] = new google.maps.Marker({ldelim}
-        position: pos{$m.locationid},
+        position: pos{$m.locationid},{if $OPTIONS.gmaps_icon}
+        icon: '{$OPTIONS.gmaps_icon}',{if $OPTIONS.gmaps_icon_offset}
+        anchor : new google.maps.Point({$OPTIONS.gmaps_icon_offset}),{/if}{/if}
         map: map{$mapid},
         title: "{$m.ml_name}"
     {rdelim});
@@ -59,18 +65,34 @@ function initialize() {ldelim}
     map{$mapid}.fitBounds(bounds);
     {/if}
 {/if}
+{if $OPTIONS.gmaps_location_sensor == 'yes'}
+    if (Modernizr.geolocation) {ldelim}
+        navigator.geolocation.getCurrentPosition(function(position){ldelim}
+            var myLocation = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+            var me = new google.maps.Marker({ldelim}
+                position: myLocation,
+                icon: '{$SITEURL}/images/my-location.png',
+                map: map{$mapid},
+                title: 'You are here!',
+                zIndex: 100
+            {rdelim});
+            bounds.extend(myLocation);
+            map{$mapid}.fitBounds(bounds);
+        {rdelim});
+    {rdelim}
+{/if}
 {rdelim}
 
-{literal}$(document).ready(function() {
+$(document).ready(function() {ldelim}
     loadGMapScript();
-});
+{rdelim});
 
-function loadGMapScript() {
+function loadGMapScript() {ldelim}
     var script = document.createElement("script");
     script.type = "text/javascript";
-    script.src = "http://maps.google.com/maps/api/js?sensor=false&callback=initialize";
+    script.src = "http://maps.googleapis.com/maps/api/js?{if $OPTIONS.gmapskey}key={$OPTIONS.gmapskey}&{/if}sensor={if $OPTIONS.gmaps_location_sensor == 'yes'}true{else}false{/if}&callback=initialize{if $pg_htmllang !='en'}&language={$pg_htmllang}{/if}";
     document.body.appendChild(script);
-}{/literal}
+{rdelim}
 /* ]]> */
 </script>
 {if $mapLocations}
