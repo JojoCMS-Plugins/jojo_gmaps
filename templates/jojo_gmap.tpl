@@ -72,6 +72,7 @@ function initialize() {ldelim}
             var me = new google.maps.Marker({ldelim}
                 position: myLocation,
                 icon: '{$SITEURL}/images/my-location.png',
+                anchor : new google.maps.Point(8,8),
                 map: map{$mapid},
                 title: 'You are here!',
                 zIndex: 100
