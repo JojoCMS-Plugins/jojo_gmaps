@@ -97,7 +97,7 @@ function loadGMapScript() {ldelim}
 /* ]]> */
 </script>
 {if $mapLocations}
-    <div class='jojo_maplocations' id="maplocations{$mapid}"{if $OPTIONS.gmaps_locations != 'yes'} style="display:none"{/if} >
+    <div class='jojo_maplocations' id="maplocations{$mapid}"{if $OPTIONS.gmaps_locations != 'yes'} style="display:none;"{/if} >
         {foreach from=$mapLocations key=k item=m}
         <div id='mapDescription{$mapid}j{$k}'>
             <h3>{$m.ml_name}</h3>
