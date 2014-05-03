@@ -1,3 +1,9 @@
+$(document).ready(function() {
+    if ($('.jojo_map').length>0) {
+        loadGMapScript();
+    }
+});
+
 function downloadUrl(url,callback) {
  var request = window.ActiveXObject ? new ActiveXObject('Microsoft.XMLHTTP') : new XMLHttpRequest;
 

@@ -84,10 +84,6 @@ function initialize() {ldelim}
 {/if}
 {rdelim}
 
-$(document).ready(function() {ldelim}
-    loadGMapScript();
-{rdelim});
-
 function loadGMapScript() {ldelim}
     var script = document.createElement("script");
     script.type = "text/javascript";
