@@ -11,7 +11,7 @@
  * @link    http://www.jojocms.org JojoCMS
  */
 
-class JOJO_Plugin_jojo_gmaps_kml extends JOJO_Plugin
+class Jojo_Plugin_jojo_gmaps_kml extends JOJO_Plugin
 {
     public function _getContent()
     {
@@ -19,7 +19,7 @@ class JOJO_Plugin_jojo_gmaps_kml extends JOJO_Plugin
         $content = array();
 
         /* Find the map in the database */
-        $map = Jojo::selectRow('SELECT * FROM {map} WHERE mp_publish = "yes" AND LOWER(mp_name) = ?', urldecode(Util::getFormData('mapname')));
+        $map = Jojo::selectRow('SELECT * FROM {map} WHERE mp_publish = "yes" AND LOWER(mp_name) = ?', urldecode(Jojo::getFormData('mapname')));
         if (!$map) {
             $content['content'] = "Map not found or not published.";
             return $content;
@@ -80,7 +80,7 @@ class JOJO_Plugin_jojo_gmaps_kml extends JOJO_Plugin
     public function getCorrectUrl()
     {
         /* Act like a file, not a folder */
-        $url = parent::getCorrectUrl() . urlencode(urldecode(Util::getFormData('mapname'))) . '.kml';
+        $url = parent::getCorrectUrl() . urlencode(urldecode(Jojo::getFormData('mapname'))) . '.kml';
         return $url;
     }
 
@@ -96,7 +96,7 @@ class JOJO_Plugin_jojo_gmaps_kml extends JOJO_Plugin
 
         /* Add maps to sitemap */
         foreach($maps as $m) {
-            $url = _SITEURL . '/'. JOJO_Plugin_jojo_gmaps_kml::_getPrefix() . '/' . urlencode(strtolower($m['mp_name'])) . '.kml';
+            $url = _SITEURL . '/'. Jojo_Plugin_jojo_gmaps_kml::_getPrefix() . '/' . urlencode(strtolower($m['mp_name'])) . '.kml';
             $priority = 0.6;
             $sitemap[$url] = array($url, time(), 'weekly', $priority);
         }
