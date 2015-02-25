@@ -1,7 +1,7 @@
-var apikey = "";
+var apikey;
 var sensor = "false";
-var marker = "";
-var infowindow = "";
+var marker;
+var infoWindows = [];
 
 $(document).ready(function() {
     if ($('.jojo_map').length>0) {
@@ -12,7 +12,6 @@ $(document).ready(function() {
         script.type = "text/javascript";
         script.src = "http://maps.googleapis.com/maps/api/js?" + ( apikey ? "key=" + apikey : "" ) + "&sensor=" + sensor + "&callback=initializeMap&language=" + lang;
         document.body.appendChild(script);
-
     }
 });
 
@@ -103,9 +102,10 @@ function initializeMap() {
                 infowindow = new google.maps.InfoWindow({
                         content: ''
                 });
+                infoWindows.push(infowindow); 
                 description = '<p class="mapinfo"><strong>' + ltitle +'</strong><br />'+ ldesc + '</p>';
                 bindInfoWindow(marker, gmap, infowindow, description);
-
+                bindInfoLink(locationid, marker, pos, gmap, infowindow, description, mapid);
             });
            if ($(this).attr('data-zoom')=='auto') {
                 gmap.fitBounds(bounds);
@@ -126,12 +126,29 @@ function initializeMap() {
                 gmap.fitBounds(bounds);
             });
         }
-     });
+    });
 }
 
 function bindInfoWindow(marker, map, infowindow, strDescription) {
     google.maps.event.addListener(marker, 'click', function() {
+        closeAllInfoWindows();
         infowindow.setContent(strDescription);
         infowindow.open(map, marker);
     });
+}
+
+function bindInfoLink(locationid, marker, pos, map, infowindow, strDescription, mapid) {
+    $('#' + locationid + ' a').click(function() {
+        location.hash = "#" +  mapid + "anchor";
+        closeAllInfoWindows();
+        map.panTo(pos);
+        infowindow.setContent(strDescription);
+        infowindow.open(map, marker);
+    });
+}
+
+function closeAllInfoWindows() {
+  for (var i=0;i<infoWindows.length;i++) {
+     infoWindows[i].close();
+  }
 }
