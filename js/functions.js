@@ -50,6 +50,8 @@ function initializeMap() {
         mapid = $(this).attr('id');
         sensor = $(this).attr('data-sensor') ? true : false;
         mapstyles = $('code.mapstyle').length>0 ? $.parseJSON($('code.mapstyle').html())  : '';
+        customicon = $(this).attr('data-icon') ? $(this).attr('data-icon') : false;
+        iconoffset = $(this).attr('data-icon-offset') ? $(this).attr('data-icon-offset').split(',') : false;
         locations = $('#maplocations' + mapid + ' > div');
        /* Set center to New Zealand if no locations are provided */
        if (locations) {
@@ -96,6 +98,8 @@ function initializeMap() {
                 marker = new google.maps.Marker({
                     position: pos,
                     map: gmap,
+                    icon: ( customicon ? customicon : ''),
+                    //anchor : (iconoffset ? new google.maps.Point(iconoffset[0],iconoffset[1]) : ''),
                     title: ltitle
                 });
                 bounds.extend(new google.maps.LatLng(geoloc[0],geoloc[1]));
@@ -103,7 +107,7 @@ function initializeMap() {
                         content: ''
                 });
                 infoWindows.push(infowindow); 
-                description = '<p class="mapinfo"><strong>' + ltitle +'</strong><br />'+ ldesc + '</p>';
+                description = '<p class="mapinfo"><strong>' + ltitle +'</strong>' + ( ldesc ? '<br />' + ldesc : '') + '</p>';
                 bindInfoWindow(marker, gmap, infowindow, description);
                 bindInfoLink(locationid, marker, pos, gmap, infowindow, description, mapid);
             });
