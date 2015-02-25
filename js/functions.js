@@ -50,6 +50,7 @@ function initializeMap() {
     $('.jojo_map').each( function(){
         mapid = $(this).attr('id');
         sensor = $(this).attr('data-sensor') ? true : false;
+        mapstyles = $('code.mapstyle').length>0 ? $.parseJSON($('code.mapstyle').html())  : '';
         locations = $('#maplocations' + mapid + ' > div');
        /* Set center to New Zealand if no locations are provided */
        if (locations) {
@@ -80,7 +81,9 @@ function initializeMap() {
             },
             streetViewControl: ( $(this).attr('data-streetview') ? true : false ),
             mapTypeControl: ( $(this).attr('data-typecontrol') ? true : false ),
-            mapTypeControlOptions: { style: google.maps.MapTypeControlStyle.DROPDOWN_MENU }       
+            mapTypeControlOptions: { style: google.maps.MapTypeControlStyle.DROPDOWN_MENU },
+            styles: mapstyles
+       
         };
         gmap = new google.maps.Map(document.getElementById(mapid), mapOptions);
         bounds = new google.maps.LatLngBounds();

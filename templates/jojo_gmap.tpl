@@ -10,3 +10,4 @@
     {/foreach}
 </div>
 {/if}
+{if $OPTIONS.gmaps_styling}<code class="mapstyle" style="display:none;">{$OPTIONS.gmaps_styling}</code>{/if}
