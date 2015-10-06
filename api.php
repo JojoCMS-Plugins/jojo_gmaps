@@ -97,8 +97,7 @@ $_options[] = array(
     'id'          => 'gmaps_styling',
     'category'    => 'Maps',
     'label'       => 'Map styling',
-    'description' => 'Paste in styling overrides here as a json array eg
-    [{featureType:"all",stylers: [{hue:"#c1b8cd" },{ saturation: -60 }]}] or use the code from a place like snazzymaps.com',
+    'description' => 'Paste in styling overrides here as a json array eg [{featureType:"all",stylers: [{hue:"#c1b8cd" },{ saturation: -60 }]}] or use the code from a place like snazzymaps.com',
     'type'        => 'textarea',
     'default'     => '',
     'options'     => '',
