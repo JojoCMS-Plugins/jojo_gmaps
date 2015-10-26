@@ -7,10 +7,9 @@ $(document).ready(function() {
     if ($('.jojo_map').length>0) {
         var lang = $('html').attr('lang');
         var apikey = $('.jojo_map').attr('data-apikey');
-        var sensor = $('.jojo_map').attr('data-sensor');
         var script = document.createElement("script");
         script.type = "text/javascript";
-        script.src = "http://maps.googleapis.com/maps/api/js?" + ( apikey ? "key=" + apikey : "" ) + "&sensor=" + sensor + "&callback=initializeMap&language=" + lang;
+        script.src = "https://maps.googleapis.com/maps/api/js?" + ( apikey ? "key=" + apikey : "" ) + "&callback=initializeMap&language=" + lang;
         document.body.appendChild(script);
     }
 });
@@ -47,12 +46,13 @@ function findonmap(map, markerid) {
 function initializeMap() {
     var mapid = '';
     $('.jojo_map').each( function(){
-        mapid = $(this).attr('id');
-        sensor = $(this).attr('data-sensor') ? true : false;
-        mapstyles = $('code.mapstyle').length>0 ? $.parseJSON($('code.mapstyle').html())  : '';
-        customicon = $(this).attr('data-icon') ? $(this).attr('data-icon') : false;
-        iconoffset = $(this).attr('data-icon-offset') ? $(this).attr('data-icon-offset').split(',') : false;
-        locations = $('#maplocations' + mapid + ' > div');
+        var mapid = $(this).attr('id');
+        var sensor = $(this).attr('data-sensor')=='true' ? true : false;
+        var mapstyles = $('code.mapstyle').length>0 ? $.parseJSON($('code.mapstyle').html())  : '';
+        var customicon = $(this).attr('data-icon') ? $(this).attr('data-icon') : false;
+        var iconoffset = $(this).attr('data-icon-offset') ? $(this).attr('data-icon-offset').split(',') : false;
+        var locations = $('#maplocations' + mapid + ' > div');
+        var mzoom = ( $(this).attr('data-zoom') && $(this).attr('data-zoom')!='auto') ? $(this).attr('data-zoom') : 5 ;
        /* Set center to New Zealand if no locations are provided */
        if (locations) {
             latlng = locations.first().attr('data-latlng').split(',');
@@ -71,7 +71,7 @@ function initializeMap() {
         }
         mapOptions = { 
             center : middle,
-            zoom : ( $(this).attr('data-zoom') && $(this).attr('data-zoom')!='auto' ? parseInt($(this).attr('data-zoom')) : 5 ),
+            zoom : (mzoom ? parseInt(mzoom) : 5 ),
             scaleControl : ( $(this).attr('data-scale') ? true : false ),
             draggable: ( $(this).attr('data-draggable') ? true : false ),
             scrollwheel: ( $(this).attr('data-scroll') ? true : false ),
