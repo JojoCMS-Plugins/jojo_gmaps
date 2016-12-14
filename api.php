@@ -94,6 +94,17 @@ $_options[] = array(
 );
 
 $_options[] = array(
+    'id'          => 'gmaps_icon_size',
+    'category'    => 'Maps',
+    'label'       => 'Custom Icon Size',
+    'description' => 'Display size of the icon (can be scaled as half actual for retina display)- width,height in pixels eg 10,30',
+    'type'        => 'text',
+    'default'     => '',
+    'options'     => '',
+    'plugin'      => 'jojo_gmaps'
+);
+
+$_options[] = array(
     'id'          => 'gmaps_styling',
     'category'    => 'Maps',
     'label'       => 'Map styling',
