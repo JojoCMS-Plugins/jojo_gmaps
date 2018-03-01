@@ -1,4 +1,4 @@
-<script type="text/javascript" src="http://www.google.com/jsapi?key={$OPTIONS.gmapskey}"></script>
+<script type="text/javascript" src="https://www.google.com/jsapi?key={$OPTIONS.gmapskey}"></script>
 <script type="text/javascript">google.load("maps", "2",{ldelim}"other_params":"sensor=false"{rdelim});</script>
 
 Lat: <span id="{$fieldname}_latTXT">{if $fieldvalue.0}{$fieldvalue.0}{/if}</span>
